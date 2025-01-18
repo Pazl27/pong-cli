@@ -14,4 +14,4 @@ cmake .. || { echo "cmake configuration failed"; exit 1; }
 make || { echo "make failed"; exit 1; }
 
 # Run the executable
-./target/app || { echo "Failed to run the executable"; exit 1; }
+./target/pong-cli || { echo "Failed to run the executable"; exit 1; }

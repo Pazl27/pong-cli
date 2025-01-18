@@ -4,6 +4,7 @@
 #include <unistd.h>
 
 #include <term.hpp>
+#include <input.hpp>
 
 enum class Direction {
     UP_LEFT,
@@ -111,18 +112,6 @@ void get_terminal_size(int &width, int &height) {
   height = w.ws_row;
 }
 
-char get_input() {
-  struct termios oldt, newt;
-  char ch;
-  tcgetattr(STDIN_FILENO, &oldt);
-  newt = oldt;
-  newt.c_lflag &= ~(ICANON | ECHO);
-  tcsetattr(STDIN_FILENO, TCSANOW, &newt);
-  ch = getchar();
-  tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
-  return ch;
-}
-
 int main() {
   int width, height;
   get_terminal_size(width, height);
@@ -131,6 +120,7 @@ int main() {
   Ball ball(width / 2, height / 2);
 
   term::hide_cursor();
+  input::set_conio_terminal_mode();
 
   while (true) {
     ball.move();
@@ -144,19 +134,27 @@ int main() {
     ball.draw();
     term::render();
 
-    char input = get_input();
-
-    if (input == 'k') {
-      player.move_up();
-    } else if (input == 'j') {
-      player.move_down(height);
-    } else if (input == 'q') {
-      break;
+    if (input::kbhit()) {
+        input::Key key = input::getch();
+        switch(key) {
+            case input::Key::UP:
+                player.move_up();
+                break;
+            case input::Key::DOWN:
+                player.move_down(height);
+                break;
+            case input::Key::EXIT:
+                goto exit_loop;
+            default:
+                break;
+        }
     }
 
-    usleep(10000);
+    usleep(30000);
   }
 
+  exit_loop:
+  input::reset_terminal_mode();
   term::show_cursor();
   return 0;
 }

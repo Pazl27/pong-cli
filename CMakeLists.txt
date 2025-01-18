@@ -14,4 +14,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/target)
 include_directories(include)
 
 # Add the executable
-add_executable(app src/main.cpp)
+add_executable(pong-cli
+    src/main.cpp
+    src/input.cpp
+)
