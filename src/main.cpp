@@ -72,15 +72,14 @@ struct Ball {
         term::draw('O');
     }
 
-    // Check if the ball hits the top or bottom wall
     void check_wall_collision(int max_y) {
-        if (y <= 1) { // Hit the top
+        if (y <= 1) {
             if (direction == Direction::UP_LEFT)
                 direction = Direction::DOWN_LEFT;
             else if (direction == Direction::UP_RIGHT)
                 direction = Direction::DOWN_RIGHT;
         }
-        if (y >= max_y - 1) { // Hit the bottom
+        if (y >= max_y - 1) {
             if (direction == Direction::DOWN_LEFT)
                 direction = Direction::UP_LEFT;
             else if (direction == Direction::DOWN_RIGHT)
@@ -88,11 +87,9 @@ struct Ball {
         }
     }
 
-    // Check for collision with the paddle
     bool check_paddle_collision(const Paddle& player) {
         if (x == player.x + 1) {
             if (y >= player.y && y < player.y + 5) {
-                // Ball hits the paddle, reverse its direction
                 if (direction == Direction::UP_LEFT)
                     direction = Direction::UP_RIGHT;
                 else if (direction == Direction::DOWN_LEFT)
@@ -136,7 +133,6 @@ int main() {
   term::hide_cursor();
 
   while (true) {
-    // Move the ball continuously
     ball.move();
     ball.check_wall_collision(height);
     ball.check_paddle_collision(player);
@@ -144,12 +140,10 @@ int main() {
     term::clear();
     term::move_cursor(0, 0);
 
-    // Draw the player paddle and ball
     player.draw();
     ball.draw();
     term::render();
 
-    // Get user input
     char input = get_input();
 
     if (input == 'k') {
@@ -160,7 +154,7 @@ int main() {
       break;
     }
 
-    usleep(10000); // Add a small delay to control the loop speed
+    usleep(10000);
   }
 
   term::show_cursor();
