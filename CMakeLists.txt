@@ -17,4 +17,8 @@ include_directories(include)
 add_executable(pong-cli
     src/main.cpp
     src/input.cpp
+    src/bot.cpp
+    src/ball.cpp
+    src/paddle.cpp
+    src/term.cpp
 )

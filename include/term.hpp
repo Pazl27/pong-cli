@@ -1,35 +1,22 @@
 #ifndef TERM_HPP_
 #define TERM_HPP_
 
-#include <iostream>
+#include <cstddef>
 
 namespace term {
 
-    std::ostream& screen = std::cout;
 
-    void clear() {
-        screen << "\33[2J";
-    }
+    void clear();
 
-    void move_cursor(size_t x, size_t y) {
-        screen << "\033[" << y << ";" << x << "H";
-    }
+    void move_cursor(size_t x, size_t y);
 
-    void hide_cursor() {
-        screen << "\033[?25l";
-    }
+    void hide_cursor();
 
-    void show_cursor() {
-        screen << "\033[?25h";
-    }
+    void show_cursor();
 
-    void render() {
-        screen.flush();
-    }
+    void render();
 
-    void draw(char c) {
-        screen << c;
-    }
+    void draw(char c);
 }
 
 #endif
