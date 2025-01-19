@@ -21,4 +21,5 @@ add_executable(pong-cli
     src/ball.cpp
     src/paddle.cpp
     src/term.cpp
+    src/game.cpp
 )
