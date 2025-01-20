@@ -11,12 +11,12 @@
 #include <ball.hpp>
 #include <direction.hpp>
 
-Game::Game() : player(3, height / 2 - 3), bot(width - 3, height / 2 - 3), ball(width / 2, height / 2),
+Game::Game() : player(3, height / 2 - 3, 7), bot(width - 3, height / 2 - 3, 7), ball(width / 2, height / 2),
       move_counter(0), move_threshold(2) {
     get_terminal_size(width, height);
 
-    player = Paddle(3, height / 2 - 3);
-    bot = Bot(width - 3, height / 2 - 3);
+    player = Paddle(3, height / 2 - 3, 7);
+    bot = Bot(width - 3, height / 2 - 3, 7);
     ball = Ball(width / 2, height / 2);
 
     term::hide_cursor();
@@ -45,6 +45,7 @@ void Game::run() {
     while (running) {
       ball.check_wall_collision(height);
       ball.check_paddle_collision(player);
+      ball.check_bot_collision(bot);
 
       term::clear();
       term::move_cursor(0, 0);
@@ -73,7 +74,7 @@ void Game::run() {
 
       if (move_counter >= move_threshold) {
           ball.move();
-          bot.calc_next_move(ball);
+          bot.calc_next_move(ball, height);
           move_counter = 0;
       } else {
           move_counter++;

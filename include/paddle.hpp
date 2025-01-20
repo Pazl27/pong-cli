@@ -3,7 +3,7 @@
 
 class Paddle {
    public:
-   Paddle(int x, int y);
+   Paddle(int x, int y, int size);
    void move_up();
    void move_down(int max_y);
    void draw() const;
@@ -14,6 +14,7 @@ class Paddle {
     private:
     int x;
     int y;
+    int size;
 };
 
 #endif
