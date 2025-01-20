@@ -18,7 +18,7 @@ void Bot::move_down(int max_y) {
 void Bot::draw() const {
   for (int i = 0; i < this->size; ++i) {
     term::move_cursor(x, y + i);
-    term::draw('|');
+    term::draw("|");
   }
 }
 

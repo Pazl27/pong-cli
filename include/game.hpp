@@ -4,6 +4,7 @@
 #include <paddle.hpp>
 #include <bot.hpp>
 #include <ball.hpp>
+#include <score.hpp>
 #include <sys/types.h>
 
 class Game {
@@ -17,6 +18,7 @@ class Game {
     Paddle player;
     Bot bot;
     Ball ball;
+    Score score;
 
     uint move_counter;
     const int move_threshold;

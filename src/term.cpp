@@ -24,6 +24,6 @@ void term::render() {
     screen.flush();
 }
 
-void term::draw(char c) {
+void term::draw(std::string c) {
     screen << c;
 }

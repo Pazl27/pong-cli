@@ -22,4 +22,5 @@ add_executable(pong-cli
     src/paddle.cpp
     src/term.cpp
     src/game.cpp
+    src/score.cpp
 )

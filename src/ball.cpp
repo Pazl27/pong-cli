@@ -4,6 +4,7 @@
 #include "paddle.hpp"
 #include "bot.hpp"
 #include "term.hpp"
+#include "score.hpp"
 
 Ball::Ball(int x, int y) : x(x), y(y) { direction = Direction::UP_LEFT; }
 
@@ -30,7 +31,7 @@ void Ball::move() {
 
 void Ball::draw() const {
   term::move_cursor(x, y);
-  term::draw('O');
+  term::draw("O");
 }
 
 void Ball::check_wall_collision(int max_y) {
@@ -72,4 +73,21 @@ bool Ball::check_bot_collision(const Bot &bot) {
     }
   }
   return false;
+}
+
+void Ball::reset(Direction direction, int width, int height) {
+  x = width / 2;
+  y = height / 2;
+  this->direction = direction;
+}
+
+void Ball::check_goal(Score &score, int width, int height) {
+  if (x <= 1) {
+    score.increment_player_score();
+    reset(Direction::UP_RIGHT, width, height);
+  }
+  if (x >= width - 1) {
+    score.increment_bot_score();
+    reset(Direction::DOWN_LEFT, width, height);
+  }
 }

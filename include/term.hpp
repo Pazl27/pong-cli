@@ -1,6 +1,7 @@
 #ifndef TERM_HPP_
 #define TERM_HPP_
 
+#include <iostream>
 #include <cstddef>
 
 namespace term {
@@ -16,7 +17,7 @@ namespace term {
 
     void render();
 
-    void draw(char c);
+    void draw(std::string c);
 }
 
 #endif
