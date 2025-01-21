@@ -83,11 +83,11 @@ void Ball::reset(Direction direction, int width, int height) {
 
 void Ball::check_goal(Score &score, int width, int height) {
   if (x <= 1) {
-    score.increment_player_score();
+    score.increment_bot_score();
     reset(Direction::UP_RIGHT, width, height);
   }
   if (x >= width - 1) {
-    score.increment_bot_score();
+    score.increment_player_score();
     reset(Direction::DOWN_LEFT, width, height);
   }
 }
