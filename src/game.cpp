@@ -8,14 +8,14 @@
 #include <bot.hpp>
 #include <direction.hpp>
 #include <input.hpp>
+#include <intro.hpp>
 #include <paddle.hpp>
-#include <term.hpp>
 #include <score.hpp>
+#include <term.hpp>
 
 Game::Game()
     : player(3, height / 2 - 3, 7), bot(width - 3, height / 2 - 3, 7),
-      ball(width / 2, height / 2), move_counter(0), move_threshold(2),
-      score() {
+      ball(width / 2, height / 2), move_counter(0), move_threshold(2), score() {
   get_terminal_size(width, height);
 
   player = Paddle(3, height / 2 - 3, 7);
@@ -39,12 +39,17 @@ void Game::get_terminal_size(int &width, int &height) {
 
 Game::~Game() {
   input::reset_terminal_mode();
-  term::clear();
-  term::show_cursor();
+  term::reset();
 }
 
 void Game::run() {
   bool running = true;
+
+  Intro intro(width);
+
+  intro.draw();
+  intro.get_input();
+
   while (running) {
 
     ball.check_wall_collision(height);

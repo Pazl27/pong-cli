@@ -5,6 +5,7 @@ namespace input {
     enum class Key {
         UP,
         DOWN,
+        SPACE,
         EXIT,
         UNKNOWN
     };

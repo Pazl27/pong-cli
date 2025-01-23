@@ -31,7 +31,7 @@ void Ball::move() {
 
 void Ball::draw() const {
   term::move_cursor(x, y);
-  term::draw("O");
+  term::draw(term::color(Color::RED, "O"));
 }
 
 void Ball::check_wall_collision(int max_y) {

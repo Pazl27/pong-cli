@@ -47,6 +47,11 @@ input::Key input::getch() {
                 return input::Key::UP;
             case 'q':
                 return input::Key::EXIT;
+            case ' ':
+                return input::Key::SPACE;
+            // ctrl-c
+            case 3:
+                return input::Key::EXIT;
             default:
                 return input::Key::UNKNOWN;
         }
