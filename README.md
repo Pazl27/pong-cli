@@ -5,6 +5,7 @@ It doesn't have any dependencies, so you can compile it with any C++ compiler or
 It only runs on Linux and MacOS.
 You play against a simple AI that moves the paddle up and down to hit the ball.
 
+![Start](./screenshots/start.png)
 ![Ping Pong](./screenshots/ping-pong.png)
 
 ## How to play
